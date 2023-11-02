@@ -1,5 +1,5 @@
 import { PARITIES } from "./constants";
-import { Country } from "./types";
+import { Country } from "../types";
 
 const api = {
   parity: {

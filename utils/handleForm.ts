@@ -1,11 +1,5 @@
 import toast from "react-hot-toast";
-
-type FormData = {
-  firstName: string;
-  secondName: string;
-  moneyAmount: string;
-  message: string;
-};
+import { FormData } from "../types";
 
 export const onChange = (
   e:

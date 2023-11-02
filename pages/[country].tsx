@@ -7,16 +7,15 @@ import { Layout } from "@vercel/examples-ui";
 import type { Country } from "../types";
 import shirt from "../public/shirt.png";
 import map from "../public/map.svg";
-import api from "../api";
-import { PRODUCT_PRICE } from "../constants";
-import { getParityPrice } from "../utils";
+import api from "../utils/api";
+import { PRODUCT_PRICE } from "../utils/constants";
+import { getParityPrice } from "../utils/utils";
 
 interface Params extends ParsedUrlQuery {
   country: Country;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get the list of countries
   const countries = await api.parity.list();
 
   return {
@@ -32,7 +31,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<unknown, Params> = async ({
   params,
 }) => {
-  // Get parity for country
   const parity = await api.parity.fetch(params.country);
 
   return {
@@ -49,8 +47,6 @@ const CountryPage = ({ country, parity }) => {
     () => getParityPrice(PRODUCT_PRICE, parity),
     [parity]
   );
-
-  console.log(country, parity);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-10 bg-gray-50">
