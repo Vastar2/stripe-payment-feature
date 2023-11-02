@@ -1,9 +1,16 @@
 import Image from "next/image";
+import Link from "next/Link";
 import shirt from "../public/shirt.png";
 import map from "../public/map.svg";
-import Link from "next/Link";
+import { useState, useEffect } from "react";
 
 const SuccessPage = () => {
+  const [randomNumber, setRandomNumber] = useState(undefined);
+
+  useEffect(() => {
+    setRandomNumber(Math.floor(Math.random() * (999999 - 900000) + 900000));
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-10 bg-gray-50">
       <div className="fixed inset-0 overflow-hidden opacity-75 bg-[#f8fafb]">
@@ -25,8 +32,7 @@ const SuccessPage = () => {
             <div className="flex justify-between w-full items-baseline">
               <div className="ml-4 mr-auto text-left flex flex-col">
                 <h4 className="font-semibold text-xl mb-4">
-                  Order No. 123456
-                  {/* Order No. {Math.floor(Math.random() * (999999 - 0) + 0)} */}
+                  Order No. {randomNumber}
                 </h4>
                 <div className="flex gap-4 items-center">
                   <div className="w-20 border border-gray-300 rounded-md">
