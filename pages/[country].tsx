@@ -10,6 +10,7 @@ import map from "../public/map.svg";
 import api from "../utils/api";
 import { PRODUCT_PRICE } from "../utils/constants";
 import { getParityPrice } from "../utils/utils";
+import { getStripe } from "../utils/getStripe";
 
 interface Params extends ParsedUrlQuery {
   country: Country;
@@ -47,6 +48,8 @@ const CountryPage = ({ country, parity }) => {
     () => getParityPrice(PRODUCT_PRICE, parity),
     [parity]
   );
+
+  getStripe();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-10 bg-gray-50">
